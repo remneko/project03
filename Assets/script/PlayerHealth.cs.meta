@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 21f68b0a44cb49841b3aa62f593decc3
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - HPbar: {fileID: 1763644024576454899, guid: ce0a173c9f24ae244aab6f0111eecfc0, type: 3}
+  - MPbar: {instanceID: 0}
+  - SPbar: {instanceID: 0}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
