@@ -6,8 +6,8 @@ namespace Mui
 {
     public class PlayerHp : MonoBehaviour
     {
-        private static Image HealthBarImage;
-        private void Start()
+        static public Image HealthBarImage;
+        private void Awake()
         {
             HealthBarImage = GetComponent<Image>();
             HealthBarImage.fillAmount = 1f;

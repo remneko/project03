@@ -6,35 +6,43 @@ namespace Mui
 { 
     public class Slash : MonoBehaviour
     {
-        [SerializeField] private float MinDamage, MaxDamage;                //(³Ì¤p¶Ë®`,³Ì¤j¶Ë®`)
-        private float DamageAttack;                                         //§ðÀ»¶Ë®`
+        [SerializeField] public float MinDamage, MaxDamage;                      //(³Ì¤p¶Ë®`,³Ì¤j¶Ë®`)
+        static public float Damageplus = 0f;                                            //§ðÀ»¥[¦¨
+        static public float DamageMultiplier = 1f;                                      //§ðÀ»­¿²v
+        static public float critProbabilityplus = 0.1f;                                 //ÃzÀ»¥[¦¨
+        static public float critProbabilityMultiplier = 1f;                             //ÃzÀ»­¿²v
+        private float DamageAttack;                                              //§ðÀ»¶Ë®`
         [SerializeField] private float Repel;
         public GameObject TMPCanvas;
-        private float critProbability;                                      //ÃzÀ»²v
+        private float critProbability;                                           //ÃzÀ»²v
         public bool critBool;
-                                                                            
-
+        
         public void EndAttack()
         {
             gameObject.SetActive(false);
 
         }
 
-        public void OnTriggerEnter2D(Collider2D other)
-        {          
+        public void damage(float damage)
+        {
+            DamageAttack = damage;
 
+        }
+
+        public void OnTriggerEnter2D(Collider2D other)
+        {       
                 if (other.CompareTag("Enemy"))
                 {//¶Ë®`°Êµe//ÃzÀ»§P©w
                     critProbability = Random.Range(0f, 1f);
 
-                    if (critProbability <= 0.5f)
+                    if (critProbability <= critProbabilityplus)
                     {
-                        DamageAttack = Random.Range(MinDamage, MaxDamage) * 1.5f;       //ÃzÀ»§ðÀ»¶Ë®`½d³òÀH¾÷
+                        damage(((Random.Range(MinDamage, MaxDamage) + Damageplus) * DamageMultiplier)*critProbabilityMultiplier); //ÃzÀ»§ðÀ»¶Ë®`½d³òÀH¾÷
                         critBool = true;
                     }
                     else
                     {
-                        DamageAttack = Random.Range(MinDamage, MaxDamage);       //§ðÀ»¶Ë®`½d³òÀH¾÷
+                        damage((Random.Range(MinDamage, MaxDamage) + Damageplus) * DamageMultiplier);//§ðÀ»¶Ë®`½d³òÀH¾÷
                         critBool = false;
                     }
 
@@ -66,8 +74,7 @@ namespace Mui
                         other.transform.position = new Vector2(other.transform.position.x + difference.x * Repel, other.transform.position.y + difference.y * Repel);
 
                     }
-                }
-            
+                }            
         }
     }
 }

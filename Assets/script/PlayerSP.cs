@@ -6,7 +6,7 @@ namespace Mui
 {
     public class PlayerSP : MonoBehaviour
     {
-        private static Image SPBarImage;
+        static public Image SPBarImage;
         private void Start()
         {
             SPBarImage = GetComponent<Image>();

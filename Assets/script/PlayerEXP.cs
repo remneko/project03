@@ -6,7 +6,7 @@ namespace Mui
 {
     public class PlayerEXP : MonoBehaviour
     {
-        private static Image EXPBarImage;
+        static public Image EXPBarImage;
         private void Start()
         {
             EXPBarImage = GetComponent<Image>();
